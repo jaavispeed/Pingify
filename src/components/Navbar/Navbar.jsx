@@ -1,46 +1,33 @@
 import { Link, NavLink } from 'react-router-dom';
 
-
 export const Navbar = () => {
-    return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-            
-            <Link 
-                className="navbar-brand" 
-                to="/"
-            >
-                Asociaciones
-            </Link>
+  return (
+    <nav className="bg-gray-900 text-white px-4 py-3 flex flex-wrap items-center justify-between">
 
-            <div className="navbar-collapse">
-                <div className="navbar-nav">
+      <Link
+        className="text-xl font-semibold"
+        to="/"
+      >
+        Pingify
+      </Link>
 
-                    <NavLink 
-                        className="nav-item nav-link" 
-                        to="/marvel"
-                    >
-                        Marvel
-                    </NavLink>
+      <div className="flex gap-4">
+        <NavLink
+          className="hover:text-gray-300 transition"
+          to="/home"
+        >
+          Inicio
+        </NavLink>
+      </div>
 
-                    <NavLink 
-                        className="nav-item nav-link" 
-                        to="/dc"
-                    >
-                        DC
-                    </NavLink>
-                </div>
-            </div>
-
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                <ul className="navbar-nav ml-auto">
-                    <NavLink 
-                        className="nav-item nav-link" 
-                        to="/login"
-                    >
-                        Logout
-                    </NavLink>
-                </ul>
-            </div>
-        </nav>
-    )
-}
+      <div>
+        <NavLink
+          className="hover:text-gray-300 transition"
+          to="/login"
+        >
+          Cerrar sesion
+        </NavLink>
+      </div>
+    </nav>
+  );
+};
