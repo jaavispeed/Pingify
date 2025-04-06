@@ -18,6 +18,13 @@ export const Navbar = () => {
         >
           Inicio
         </NavLink>
+
+        <NavLink
+          className="hover:text-gray-300 transition"
+          to="/Emails"
+        >
+          Enviar correos
+        </NavLink>
       </div>
 
       <div>
@@ -25,7 +32,7 @@ export const Navbar = () => {
           className="hover:text-gray-300 transition"
           to="/login"
         >
-          Cerrar sesion
+          Cerrar sesión
         </NavLink>
       </div>
     </nav>
