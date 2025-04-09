@@ -36,10 +36,11 @@ const AuthProvider = ({ children }) => {
         const action = { type: types.login, payload: user };
         dispatch(action);
       } else {
-        console.error('Error al iniciar sesión:', data.message);
+        throw new Error(data.message || 'Credenciales incorrectas');
       }
     } catch (error) {
       console.error('Error en la solicitud de inicio de sesión:', error);
+      throw error;
     }
   }
   

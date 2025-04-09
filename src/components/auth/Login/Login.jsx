@@ -1,31 +1,36 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
 
-  const {login} = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
-
-  const onLogin = async (e) =>{
+  
+  const onLogin = async (e) => {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
-    await login(email, password);  // Asumimos que login es una función asincrónica
-    navigate ('/', { replace: true});
-  }
+    try {
+      // Intentamos hacer login
+      await login(email, password);  // Asumimos que login es una función asincrónica
+      navigate('/', { replace: true }); // Redirige al home si el login es exitoso
+    } catch (error) {
+      // Si ocurre un error (por ejemplo, credenciales incorrectas)
+      toast.error('Correo o contraseña incorrectos'); // Muestra una notificación de error
+    }
+  };
 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Iniciar Sesión</h2>
-        
         <form onSubmit={onLogin}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
@@ -64,8 +69,9 @@ const Login = () => {
             Ingresar
           </button>
           <p className='font-semibold text-sm'>¿No tienes cuenta? <Link to='/register' className='text-blue-700 font-bold'>Regístrate</Link></p>
-          </form>
+        </form>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
