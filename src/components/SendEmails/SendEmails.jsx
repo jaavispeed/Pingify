@@ -2,7 +2,7 @@ import React from 'react';
 
 const SendEmails = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="h-[calc(100vh-64px)] flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Enviar Correo</h2>
 
@@ -25,7 +25,7 @@ const SendEmails = () => {
             </label>
             <textarea
               id="message"
-              rows="6"
+              rows={6}
               placeholder="Escribe tu mensaje aquí..."
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             ></textarea>
