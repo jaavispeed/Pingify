@@ -42,6 +42,30 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   }
+
+  const register = async (username, email, password) => {
+    try{
+      const res = await fetch(API_ROUTES.REGISTER, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+      const data = await res.json()
+      if(data.token){
+        const action = { type: types.register, payload: { username, email } };
+        dispatch(action);
+      }else{
+        throw new Error('Error en el registro, no se recibió un token');
+
+      }
+      
+    }catch{
+      console.error('Error en la solicitud de registro:', error);
+      throw error;
+    }
+  }
   
   const logout = ()=>{
     localStorage.removeItem('user');
@@ -55,6 +79,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={{
       ...authState,
       login,
+      register,
       logout
     }}>
       {children}

@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
+  const { register } = useContext(AuthContext);  // Consumir la función de register
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      await register(username, email, password);  // Usar la función register
+    } catch (error) {
+      console.error('Error al registrar:', error);
+    }
+  };
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Crear Cuenta</h2>
 
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm mb-2" htmlFor="name">
               Usuario
@@ -15,6 +31,8 @@ const Register = () => {
             <input
               id="name"
               type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} 
               placeholder="Nombre de usuario"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -28,6 +46,8 @@ const Register = () => {
             <input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="tucorreo@ejemplo.com"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -41,6 +61,8 @@ const Register = () => {
             <input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Crea una contraseña"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
