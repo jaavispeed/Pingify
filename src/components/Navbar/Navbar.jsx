@@ -1,6 +1,20 @@
-import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../auth/context/AuthContext';
 
 export const Navbar = () => {
+
+  const navigate = useNavigate()
+
+  const {user, logout} = useContext(AuthContext)
+
+  const onLogout = () =>{
+    logout();
+    navigate('/login',{
+      replace: true
+    })
+  }
+
   return (
     <nav className="bg-gray-900 text-white px-4 py-3 flex flex-wrap items-center justify-between">
 
@@ -31,6 +45,7 @@ export const Navbar = () => {
         <NavLink
           className="hover:text-gray-300 transition"
           to="/login"
+          onClick={onLogout}
         >
           Cerrar sesión
         </NavLink>
