@@ -54,6 +54,12 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await res.json()
+
+      if (!res.ok) {
+        // Lanza el mensaje que vino desde el backend
+        throw new Error(data.message || 'Error en el registro');
+      }
+
       if (data.token) {
         const action = { type: types.register, payload: { username, email } };
         dispatch(action);
