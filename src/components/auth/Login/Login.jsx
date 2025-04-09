@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -7,6 +7,8 @@ const Login = () => {
 
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
+  const location = useLocation(); 
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +18,13 @@ const Login = () => {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  useEffect(() => {
+    // Verifica si 'registered' está presente en el estado de la URL
+    if (location.state?.registered) {
+      toast.success('¡Registro exitoso! Ahora puedes iniciar sesión.');
+    }
+  }, [location]);
 
   useEffect(() => {
     const isEmailValid = emailRegex.test(email);

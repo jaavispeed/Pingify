@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Register = () => {
   const navigate = useNavigate()
@@ -29,11 +29,10 @@ const Register = () => {
     e.preventDefault();
     try {
       await register(username, email, password);
-      navigate('/login', { replace: true })
+      navigate('/login', { state: { registered: true }, replace: true });
     } catch (error) {
       console.error('Error al registrar:', error);
       toast.error(error.message || 'Error al registrarse');
-
     }
   };
 
@@ -44,7 +43,6 @@ const Register = () => {
       </div>
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Crear Cuenta</h2>
-
         <form onSubmit={onRegister}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm mb-2" htmlFor="name">

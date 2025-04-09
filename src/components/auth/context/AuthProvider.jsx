@@ -3,9 +3,10 @@ import { AuthContext } from "./AuthContext"
 import { authReducer } from "./authReducer"
 import { types } from "../types/types"
 import { API_ROUTES } from "../services/authApi"
+import { toast } from "react-toastify"
 
 const init = () => {
-  const user = JSON.parse(localStorage.getItem('user')) ;
+  const user = JSON.parse(localStorage.getItem('user'));
   return {
     logged: !!user,
     user: user,
@@ -25,13 +26,13 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-  
+
       if (data.token) {
-        const user = { id: data.id, email: data.email, username: data.username }; 
+        const user = { id: data.id, email: data.email, username: data.username };
         const token = data.token;
-        localStorage.setItem('user', JSON.stringify(user)); 
-        localStorage.setItem('token', JSON.stringify(token)); 
-  
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', JSON.stringify(token));
+
         const action = { type: types.login, payload: user };
         dispatch(action);
       } else {
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const register = async (username, email, password) => {
-    try{
+    try {
       const res = await fetch(API_ROUTES.REGISTER, {
         method: 'POST',
         headers: {
@@ -53,25 +54,24 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await res.json()
-      if(data.token){
+      if (data.token) {
         const action = { type: types.register, payload: { username, email } };
         dispatch(action);
-      }else{
+      } else {
         throw new Error('Error en el registro, no se recibió un token');
-
       }
-      
-    }catch{
+
+    } catch (error) {
       console.error('Error en la solicitud de registro:', error);
       throw error;
     }
   }
-  
-  const logout = ()=>{
+
+  const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
 
-    const action = {type: types.logout}
+    const action = { type: types.logout }
     dispatch(action);
   }
 
