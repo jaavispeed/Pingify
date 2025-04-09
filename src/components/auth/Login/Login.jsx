@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
               type="email"
               value={email}
               onChange={handleEmailChange}
-              placeholder="tucorreo@ejemplo.com"
+              placeholder="tucorreo@gmail.com"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -59,11 +59,12 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+            className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
           >
             Ingresar
           </button>
-        </form>
+          <p className='font-semibold text-sm'>¿No tienes cuenta? <Link to='/register' className='text-blue-700 font-bold'>Regístrate</Link></p>
+          </form>
       </div>
     </div>
   );
