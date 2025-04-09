@@ -77,7 +77,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className={`w-full ${isValid ? 'bg-black hover:bg-gray-800' : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold py-2 px-4 rounded-lg transition duration-200`}
+            className={`w-full ${isValid ? 'bg-black hover:bg-gray-800 cursor-pointer'  : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold py-2 px-4 rounded-lg transition duration-200`}
             disabled={!isValid}
           >
             Ingresar
