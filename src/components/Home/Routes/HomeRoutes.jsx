@@ -11,8 +11,6 @@ const HomeRoutes = () => {
             <Routes>
                 <Route path="home" element={<Home />} />
                 <Route path="emails" element={<SendEmails />} />
-
-
                 <Route path="/" element={<Navigate to="/home" />} />
             </Routes>
 

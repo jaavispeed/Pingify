@@ -15,30 +15,34 @@ const init = () => {
 const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {}, init)
 
-  const login = (email, password) => {
-    fetch(API_ROUTES.LOGIN, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.token){
-        const user = { id: data.id, email: data.email, username: data.username}; // Guardamos los datos que necesitemos
+  const login = async (email, password) => {
+    try {
+      const res = await fetch(API_ROUTES.LOGIN, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await res.json();
+  
+      if (data.token) {
+        const user = { id: data.id, email: data.email, username: data.username }; // Guardamos los datos que necesitemos
         const token = data.token;
         localStorage.setItem('user', JSON.stringify(user)); // Guardamos el usuario en localStorage
-        localStorage.setItem('token', JSON.stringify(token)); // Guardamos el usuario en localStorage
-
-        const action = { type: types.login, payload: user }
-        dispatch(action)
-      }else{
+        localStorage.setItem('token', JSON.stringify(token)); // Guardamos el token en localStorage
+  
+        const action = { type: types.login, payload: user };
+        dispatch(action);
+      } else {
         console.error('Error al iniciar sesión:', data.message);
       }
-    })
-    
+    } catch (error) {
+      console.error('Error en la solicitud de inicio de sesión:', error);
+    }
   }
+  
 
   const logout = ()=>{
     localStorage.removeItem('user');

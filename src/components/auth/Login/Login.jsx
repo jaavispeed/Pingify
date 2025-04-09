@@ -13,10 +13,10 @@ const Login = () => {
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
 
-  const onLogin = (e) =>{
+  const onLogin = async (e) =>{
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
-    login(email,password)
+    await login(email, password);  // Asumimos que login es una función asincrónica
     navigate ('/', { replace: true});
   }
 

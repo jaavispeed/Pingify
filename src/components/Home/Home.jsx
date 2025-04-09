@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../auth/context/AuthContext';
 
 const Home = () => {
-  const { user = { username: '' } } = useContext(AuthContext);
+  const {user} = useContext(AuthContext)
   const subscribers = 123; // Número de personas suscritas al link
 
   return (
