@@ -14,18 +14,15 @@ const Login = () => {
   const handlePasswordChange = (e) => setPassword(e.target.value);
   
   const onLogin = async (e) => {
-    e.preventDefault(); // Previene el comportamiento por defecto del formulario
-
+    e.preventDefault(); 
     try {
       // Intentamos hacer login
-      await login(email, password);  // Asumimos que login es una función asincrónica
-      navigate('/', { replace: true }); // Redirige al home si el login es exitoso
+      await login(email, password);  
+      navigate('/', { replace: true }); 
     } catch (error) {
-      // Si ocurre un error (por ejemplo, credenciales incorrectas)
-      toast.error('Correo o contraseña incorrectos'); // Muestra una notificación de error
+      toast.error(error.message || 'Error al iniciar sesión');
     }
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">

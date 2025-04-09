@@ -24,14 +24,13 @@ const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-  
       const data = await res.json();
   
       if (data.token) {
-        const user = { id: data.id, email: data.email, username: data.username }; // Guardamos los datos que necesitemos
+        const user = { id: data.id, email: data.email, username: data.username }; 
         const token = data.token;
-        localStorage.setItem('user', JSON.stringify(user)); // Guardamos el usuario en localStorage
-        localStorage.setItem('token', JSON.stringify(token)); // Guardamos el token en localStorage
+        localStorage.setItem('user', JSON.stringify(user)); 
+        localStorage.setItem('token', JSON.stringify(token)); 
   
         const action = { type: types.login, payload: user };
         dispatch(action);
@@ -44,7 +43,6 @@ const AuthProvider = ({ children }) => {
     }
   }
   
-
   const logout = ()=>{
     localStorage.removeItem('user');
     localStorage.removeItem('token');
