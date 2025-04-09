@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     const isEmailValid = emailRegex.test(email);
-    const isPasswordValid = password.length >= 6; 
+    const isPasswordValid = password.length >= 6;
     setIsValid(isEmailValid && isPasswordValid);
   }, [email, password]);
 
@@ -34,7 +34,11 @@ const Login = () => {
   };
 
   return (
+
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 font-bold text-4xl text-center">
+        Pingify
+      </div>
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Iniciar Sesión</h2>
         <form onSubmit={onLogin}>
@@ -77,7 +81,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className={`w-full ${isValid ? 'bg-black hover:bg-gray-800 cursor-pointer'  : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold py-2 px-4 rounded-lg transition duration-200`}
+            className={`w-full ${isValid ? 'bg-black hover:bg-gray-800 cursor-pointer' : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold py-2 px-4 rounded-lg transition duration-200`}
             disabled={!isValid}
           >
             Ingresar
