@@ -16,8 +16,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="bg-gray-900 text-white px-4 py-3 flex flex-wrap items-center justify-between">
-
+    <nav className="bg-black shadow-lg text-white px-4 py-3 flex flex-wrap items-center justify-between">
       <Link
         className="text-xl font-semibold"
         to="/"
