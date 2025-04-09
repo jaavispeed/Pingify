@@ -21,7 +21,7 @@ export const Navbar = () => {
 
         <NavLink
           className="hover:text-gray-300 transition"
-          to="/Emails"
+          to="/emails"
         >
           Enviar correos
         </NavLink>
