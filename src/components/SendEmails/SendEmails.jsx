@@ -2,7 +2,7 @@ import React from 'react';
 
 const SendEmails = () => {
   return (
-    <div className="h-[calc(100vh-64px)] flex items-center justify-center bg-gray-100 px-4">
+    <div className="h-[calc(100vh-64px)] flex items-center justify-center px-4">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Enviar Correo</h2>
 
@@ -33,10 +33,11 @@ const SendEmails = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+            className="w-full bg-black hover:bg-gray-800 cursor-pointer text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
           >
             Enviar
           </button>
+          
         </form>
       </div>
     </div>
